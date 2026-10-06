@@ -1,0 +1,65 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix shs: <http://enslaved.org/shapes/sex-record#>
+
+shs:SexRecordShape
+    a sh:NodeShape ;
+    sh:targetClass :SexRecord ;
+    sh:closed true ;
+    sh:ignoredProperties (rdf:type) ;
+    sh:property shs:hasValue ,
+                shs:hasTemporalExtent ,
+                shs:owningAgent ,
+                shs:isDirectlyBasedOn ,
+                shs:recordedAt ,
+                shs:reportsOn .
+
+shs:hasValue
+    a sh:PropertyShape ;
+    sh:path :hasValue ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :SexTypes ;
+    sh:message "SexRecord must have exactly one :hasValue, typed :SexType." .
+
+shs:hasTemporalExtent 
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :TemporalExtent ;
+    sh:message "SexRecord must have exactly one :hasTemporalExtent, typed :TemporalExtent." .
+
+shs:isDirectlyBasedOn 
+    a sh:PropertyShape ;
+    sh:path :isDirectlyBasedOn ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :EntityWithProvenance ;
+    sh:message "SexRecord must have exactly one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+
+shs:recordedAt
+    a sh:PropertyShape ;
+    sh:path :recordedAt ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:class :Event ;
+    sh:message "SexRecord must have exactly one :recordedAt, typed :Event." .
+
+shs:reportsOn
+    a sh:PropertyShape ;
+    sh:path :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "SexRecord must have at most one :reportsOn, typed :Event." .
+
+shs:owningAgent
+    a sh:PropertyShape ;
+    sh:path [ sh:inversePath [ sh:alternativePath (:hasSexRecord :hasPersonRecord :hasAgentRecord)] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Agent ] ) ;
+    sh:message "SexRecord must have exactly one Agent." .
+    

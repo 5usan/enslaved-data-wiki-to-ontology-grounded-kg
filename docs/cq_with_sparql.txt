@@ -1,0 +1,72 @@
+1. What are all the enslaved individuals categorized by gender, ethnicity, and location (e.g., on plantation X or of XXXX ethnicity)?
+
+PREFIX :        <https://enslaved.org/ontology/>
+PREFIX ed:      <https://lod.enslaved.org/entity/>
+PREFIX edt:     <https://lod.enslaved.org/prop/direct/>
+PREFIX ep:      <https://lod.enslaved.org/prop/>
+PREFIX epsv:    <https://lod.enslaved.org/prop/statement/value/>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema:  <http://schema.org/>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX wikibase:<http://wikiba.se/ontology#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?agent ?fullName ?sex ?origin ?placeName ?enslavedLabel WHERE {
+	?agent :hasPersonStatusRecord ?personStatusRecord ;
+  			:hasNameRecord ?nameRecord ;
+  			:hasSexRecord ?sexRecord ;
+     		:hasOriginRecord ?originRecord .
+	?nameRecord :fullNameAsString ?fullName .
+  	?personStatusRecord :hasValue ?enslavedRoleType .
+  	VALUES ?enslavedRoleType {ed:Q159275 ed:Q166 ed:Q109}
+  	?enslavedRoleType rdfs:label ?enslavedLabel .
+    ?sexRecord :hasValue ?sexValue .
+    ?sexValue rdfs:label ?sex .
+    ?originRecord :hasECVO ?originValue ;
+                  :recordedAt ?event .
+  	?event :atPlace ?place .
+  	?place :hasName ?placeName .
+  	?originValue rdfs:label ?origin .
+}
+
+LIMIT 50
+
+2. What are all the enslaved people in County X (suppose "Mexico") in the century X (16th - 1700 to 1800)?
+
+PREFIX :        <https://enslaved.org/ontology/>
+PREFIX ed:      <https://lod.enslaved.org/entity/>
+PREFIX edt:     <https://lod.enslaved.org/prop/direct/>
+PREFIX ep:      <https://lod.enslaved.org/prop/>
+PREFIX epsv:    <https://lod.enslaved.org/prop/statement/value/>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema:  <http://schema.org/>
+PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
+PREFIX wikibase:<http://wikiba.se/ontology#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX eds: <https://lod.enslaved.org/entity/statement/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?countryName ?temporalValue ?fullName ?enslavedLabel WHERE {
+	?place :hasPlaceTypeCV ed:Q222; #cv for country
+  			:hasName ?countryName
+  	FILTER (?countryName = "Mexico")
+  	?event :atPlace ?place ;
+         	:providesParticipantRole ?participantRoleRecord ;
+          	:hasTemporalExtent ?temporalExtent .
+  	?temporalExtent ?temporalPredicate ?temporalValue .
+  VALUES ?temporalPredicate {:contains :startsAt :endsAt}
+  FILTER (?temporalValue > "1700-01-01T00:00:00Z"^^xsd:dateTime && ?temporalValue < "1800-01-01T00:00:00Z"^^xsd:dateTime) 
+  	?agent :hasParticipantRoleRecord ?participantRoleRecord ;
+  			:hasPersonStatusRecord ?personStatusRecord ;
+     		:hasNameRecord ?nameRecord .
+  	?nameRecord :fullNameAsString ?fullName .
+  	?personStatusRecord :hasValue ?personStatusValue .
+  VALUES ?personStatusValue {ed:Q159275 ed:Q166 ed:Q109}
+  ?personStatusValue rdfs:label ?enslavedLabel .
+  
+}
+
+LIMIT 50
+
+
+

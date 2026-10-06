@@ -1,0 +1,123 @@
+wiki_class,wiki_label,bucket,ontology_class,note
+Q1,existence,DROP,,upper-ontology/plumbing
+Q12,philosophical concept,DROP,,upper-ontology/plumbing
+Q23,class,DROP,,upper-ontology/plumbing
+Q34,ontology,DROP,,upper-ontology/plumbing
+Q45,conceptual model,DROP,,upper-ontology/plumbing
+Q56,model,DROP,,upper-ontology/plumbing
+Q67,Entity with Provenance,KEEP,:EntityWithProvenance,exact
+Q86,Controlled Vocabulary for Sex,KEEP,:SexTypes,needs decision
+Q108,Occupation,KEEP,:Occupations,fuzzy
+Q110,Agent,KEEP,:Agent,exact
+Q122,Document Type,KEEP,:DocumentTypes,fuzzy
+Q135,Version 3.0 of CV,DROP,,upper-ontology/plumbing
+Q139,Controlled Vocabulary for Event Type,KEEP,:EventTypes,needs decision
+Q141,Version 2.0 of CV,DROP,,upper-ontology/plumbing
+Q146,Voyage,CV_INDIVIDUAL,:EventTypes,cv value
+Q147,Birth,CV_INDIVIDUAL,:EventTypes,cv value
+Q148,Death,CV_INDIVIDUAL,:EventTypes,cv value
+Q149,Baptism or Naming Ceremony,CV_INDIVIDUAL,:EventTypes,cv value
+Q150,Marriage,CV_INDIVIDUAL,:EventTypes,cv value
+Q151,Enslavement,CV_INDIVIDUAL,:EventTypes,cv value
+Q153,Sale or Transfer,CV_INDIVIDUAL,:EventTypes,cv value
+Q154,Disappearance,CV_INDIVIDUAL,:EventTypes,cv value
+Q155,Legal Proceeding,CV_INDIVIDUAL,:EventTypes,cv value
+Q156,"Employment, Apprenticeship, or Indenture",CV_INDIVIDUAL,:EventTypes,cv value
+Q157,Narrative,CV_INDIVIDUAL,:EventTypes,cv value
+Q158,Health or Sickness or Injury,CV_INDIVIDUAL,:EventTypes,cv value
+Q159,Residence,CV_INDIVIDUAL,:EventTypes,cv value
+Q161,Relocation,CV_INDIVIDUAL,:EventTypes,cv value
+Q163,Family Separation,CV_INDIVIDUAL,:EventTypes,cv value
+Q164,Military Service,CV_INDIVIDUAL,:EventTypes,cv value
+Q172,Research Project,KEEP,:ResearchProject,exact
+Q202,entity,DROP,,upper-ontology/plumbing
+Q204,Controlled Vocabulary for Person Status,KEEP,:PSCategories,needs decision
+Q205,Controlled Vocabulary for Place Type,KEEP,:PlaceTypeCV,needs decision
+Q219,Controlled Vocabulary for Age Category,KEEP,:AgeCategory,needs decision
+Q225,Wikidata identifier,DROP,,upper-ontology/plumbing
+Q233,Region,KEEP,:Place,needs decision
+Q234,Enslaved.org property,DROP,,upper-ontology/plumbing
+Q236,relation of type constraint,DROP,,upper-ontology/plumbing
+Q237,property constraint,DROP,,upper-ontology/plumbing
+Q238,Event,KEEP,:Event,exact
+Q239,Enslaved hub property definition,DROP,,upper-ontology/plumbing
+Q240,definition,DROP,,upper-ontology/plumbing
+Q241,Enslaved.org item,DROP,,upper-ontology/plumbing
+Q242,unique identifier,DROP,,upper-ontology/plumbing
+Q243,identifier,DROP,,upper-ontology/plumbing
+Q244,namespace,DROP,,upper-ontology/plumbing
+Q245,statement,DROP,,upper-ontology/plumbing
+Q248,representation,DROP,,upper-ontology/plumbing
+Q249,property,DROP,,upper-ontology/plumbing
+Q250,Registration,CV_INDIVIDUAL,:EventTypes,cv value
+Q251,quality,DROP,,upper-ontology/plumbing
+Q252,scientific modelling,DROP,,upper-ontology/plumbing
+Q259,authority control,DROP,,upper-ontology/plumbing
+Q260,controlled vocabulary,DROP,,upper-ontology/plumbing
+Q261,knowledge organization system,DROP,,upper-ontology/plumbing
+Q263,variable-order metaclass,DROP,,upper-ontology/plumbing
+Q265,Enslaved.org qualifier,DROP,,upper-ontology/plumbing
+Q266,intellectual work,DROP,,upper-ontology/plumbing
+Q267,information,DROP,,fuzzy
+Q268,work,DROP,,upper-ontology/plumbing
+Q269,system,DROP,,upper-ontology/plumbing
+Q270,structure,DROP,,upper-ontology/plumbing
+Q271,communication medium,DROP,,upper-ontology/plumbing
+Q272,conceptual system,DROP,,upper-ontology/plumbing
+Q273,database,DROP,,upper-ontology/plumbing
+Q274,gazetteer,DROP,,upper-ontology/plumbing
+Q275,artificial entity,DROP,,upper-ontology/plumbing
+Q276,product,DROP,,upper-ontology/plumbing
+Q277,culture,DROP,,upper-ontology/plumbing
+Q278,human behaviour,DROP,,upper-ontology/plumbing
+Q279,behavior,DROP,,upper-ontology/plumbing
+Q280,activity,DROP,,upper-ontology/plumbing
+Q281,Emancipation or Manumission,CV_INDIVIDUAL,:EventTypes,cv value
+Q282,Event Type,KEEP,:EventTypes,fuzzy
+Q283,catalog,DROP,,upper-ontology/plumbing
+Q288,Place Type,KEEP,:PlaceTypeCV,fuzzy
+Q291,Sex,KEEP,:SexTypes,fuzzy
+Q293,Agent Record,KEEP,:AgentRecord,exact
+Q298,Ethnolinguistic Descriptor,KEEP,:ECVO,needs decision
+Q300,metaclass,DROP,,upper-ontology/plumbing
+Q301,Place,KEEP,:Place,exact
+Q316,Role in a Life Event,KEEP,:ParticipantRoleTypes,needs decision
+Q351,Controlled Vocabulary for Role,KEEP,:ParticipantRoleTypes,needs decision
+Q360,Controlled Vocabulary for Document Type,KEEP,:DocumentTypes,needs decision
+Q375,Person Status,KEEP,:PSCategories,fuzzy
+Q399,Origin,KEEP,:OriginRecord,fuzzy
+Q407,concept,DROP,,upper-ontology/plumbing
+Q408,Controlled Vocabulary for Occupation,KEEP,:Occupations,needs decision
+Q410,Person,KEEP,:Person,exact
+Q411,Organization,KEEP,:Organization,exact
+Q412,Age Category,KEEP,:AgeCategory,exact
+Q415,social organism behavior,DROP,,upper-ontology/plumbing
+Q416,proposition,DROP,,upper-ontology/plumbing
+Q417,sign,DROP,,upper-ontology/plumbing
+Q420,conflicts-with constraint,DROP,,upper-ontology/plumbing
+Q422,Controlled Vocabulary for Ethnonyms,KEEP,:ECVO,needs decision
+Q424,Age Record,KEEP,:AgeRecord,exact
+Q428,abstract object,DROP,,upper-ontology/plumbing
+Q433,License Information,KEEP,:LicenseInformation,exact
+Q436,Freedom Narratives Region,KEEP,:PlaceCV,needs decision
+Q437,Slave Voyages Region,KEEP,:PlaceCV,needs decision
+Q449,mandatory qualifier constraint,DROP,,upper-ontology/plumbing
+Q451,VIAF identifier,DROP,,upper-ontology/plumbing
+Q454,Version 1.0 of CV,DROP,,upper-ontology/plumbing
+Q457,Controlled Vocabulary for Inter Agent Relationship,KEEP,:InterAgentRelationshipTypes,needs decision
+Q463,Interagent Relationship,KEEP,:InterAgentRelationshipRecord,fuzzy
+Q473,Membership,CV_INDIVIDUAL,:EventTypes,cv value
+Q478,object,DROP,,upper-ontology/plumbing
+Q489,temporal entity,DROP,,upper-ontology/plumbing
+Q10087,Embarkation,CV_INDIVIDUAL,:EventTypes,cv value
+Q10088,Disembarkation,CV_INDIVIDUAL,:EventTypes,cv value
+Q280159,Place,KEEP,:Place,exact
+Q298746,Mortgage,CV_INDIVIDUAL,:EventTypes,cv value
+Q303403,Place Name,KEEP,:Place,fuzzy
+Q624606,Match Class Module,DROP,,upper-ontology/plumbing
+Q624607,Match,KEEP,:Match,exact
+Q624608,Close Match,KEEP,:MatchType,fuzzy
+Q624609,No Match,KEEP,:MatchType,fuzzy
+Q647904,Appraisal,CV_INDIVIDUAL,:EventTypes,cv value
+Q856060,Mention,CV_INDIVIDUAL,:EventTypes,cv value
+Q907443,Advertisement,CV_INDIVIDUAL,:EventTypes,cv value

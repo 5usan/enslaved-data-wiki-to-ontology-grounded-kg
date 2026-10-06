@@ -1,0 +1,81 @@
+wiki_prop,wiki_label,prop_kind,bucket,ontology_property,note
+P1,instance of,object,DROP,,wikibase meta
+P2,subclass of,object,DROP,,wikibase meta
+P3,hasAgeValue,datatype,KEEP,:hasAgeValue,exact
+P4,hasAgeCategory,object,KEEP,:hasValue,fuzzy
+P5,equivalent class,datatype,DROP,,wikibase meta
+P6,isDirectlyBasedOn,object,KEEP,:isDirectlyBasedOn,exact
+P7,locatedIn,object,KEEP,:isSpatiallyLocatedIn,fuzzy
+P8,hasPlaceType,object,KEEP,:hasPlaceTypeCV,fuzzy
+P9,modern country code,datatype,DROP,,needs decision
+P10,has cause,object,DROP,,needs decision
+P11,version,object,DROP,,wikibase meta
+P12,hasLink,datatype,KEEP,:hasValue,fuzzy
+P13,hasContributor,datatype,DROP,,needs decision
+P14,hasPI,object,DROP,,needs decision
+P15,hasLicenseInfo,object,KEEP,:hasLicenseInformation,fuzzy
+P16,generatedBy,object,KEEP,:generatedBy,exact
+P17,hasParticipantRole,object,KEEP,:roleProvidedBy,"CORRECTED (diagnostics Aug2026): as the pq:P17 qualifier on a reified P29 statement, P17 carries the AGENT (Q410 Person/Q411 Org) -> :roleProvidedBy, NOT the role type. Original fuzzy match to :hasParticipantRoleType was inverted. 855,557 direct edt:P17-on-Person claims (person->role) are Event-less and unused. See participant_role.py"
+P18,recordedAt,object,KEEP,:recordedAt,exact
+P19,roleProvidedBy,object,KEEP,:roleProvidedBy,"DEAD DIRECTION (diagnostics Aug2026): edt:P19 has ZERO direct instances in the dump. :roleProvidedBy is actually materialised from the pq:P17 qualifier (see P17 row). Keep row for provenance only"
+P20,hasName,datatype,KEEP,:hasName,exact
+P21,hasExternalReference,datatype,KEEP,:hasExternalReference,exact
+P22,hasOccupation,object,KEEP,:hasOccupationRecord,fuzzy
+P23,hasOriginalSourceType,object,KEEP,:hasOriginalSourceType,exact
+P24,hasDescriptiveRole,datatype,KEEP,:hasDescriptiveEthnonym,needs decision
+P25,reportsOn,object,KEEP,:reportsOn,exact
+P26,availableFrom,datatype,KEEP,:availableFrom,exact
+P27,atPlace,object,KEEP,:atPlace,exact
+P28,date,datatype,KEEP,:startsat,needs decision
+P29,providesParticipantRole,object,KEEP,:providesParticipantRole,"exact for Event->record link. REIFIED (diagnostics Aug2026): the ep:P29 statement node IS the :ParticipantRoleRecord (681,739 of them); its eps:P29 main value (role CV, Q316 Role in a Life Event, 100%) materialises :hasParticipantRoleType (max 1). See participant_role.py"
+P30,hasEventType,object,KEEP,:hasEventType,exact
+P31,hasSex,object,KEEP,:hasSexRecord,fuzzy
+P32,hasRaceorColor,datatype,KEEP,:hasRaceRecord,needs decision
+P33,hasPersonStatus,object,KEEP,:hasPersonStatusRecord,fuzzy
+P34,hasStatusGeneratingEvent,object,KEEP,:hasStatusGeneratedEvent,needs decision
+P35,hasMatchType,object,KEEP,:hasMatchType,exact
+P36,Geonames ID,datatype,DROP,,needs decision
+P37,hasSpouse,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P38,hasChild,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P39,hasInterAgentRelationshipTypeTo,object,KEEP,:hasInterAgentRelationshipType,fuzzy
+P40,isRelationshipTo,object,KEEP,:isRelationshipTo,exact
+P41,hasEnslavedPerson,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P42,hasAge,object,KEEP,:hasAgeRecord,fuzzy
+P43,hasParent,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P44,hasSibling,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P45,has quality,object,DROP,,wikibase meta
+P46,hasEthnolinguisticDescriptor,object,KEEP,:hasDescriptiveEthnonym,needs decision
+P47,referstoPlaceofOrigin,object,KEEP,:refersToPlaceOfOrigin,exact
+P48,hasOwner,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P49,formatter URL,datatype,DROP,,needs decision
+P50,formatter URI for RDF resource,datatype,DROP,,needs decision
+P51,format as a regular expression,datatype,DROP,,needs decision
+P52,occursAfter,datatype,KEEP,:occursAfter,exact
+P53,Enslaved.org property,datatype,DROP,,needs decision
+P54,property constraint,object,DROP,,wikibase meta
+P55,part of,object,DROP,,wikibase meta
+P56,subject item of this property,object,DROP,,wikibase meta
+P57,has part,object,DROP,,wikibase meta
+P58,has effect,object,DROP,,wikibase meta
+P59,hasCoordinates,datatype,KEEP,:hasCoordinates,exact
+P60,official website,datatype,DROP,,needs decision
+P61,of,object,DROP,,wikibase meta
+P62,facet of,object,DROP,,wikibase meta
+P63,endsAt,datatype,KEEP,:endsAt,exact
+P64,VIAF ID,datatype,DROP,,needs decision
+P65,wikidataID,datatype,DROP,,needs decision
+P66,hasDescription,datatype,KEEP,:hasDescriptionText,fuzzy
+P67,hasGodparent,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P68,hasGodChild,object,KEEP,:hasInterAgentRelationshipType,needs decision
+P69,occursBefore,datatype,KEEP,:occursBefore,exact
+P70,ethnonym variant,object,DROP,,needs decision
+P71,hasAlternateName,datatype,KEEP,:hasAlternateName,exact
+P72,hasSurname,datatype,KEEP,:hasSurnameAsString,fuzzy
+P73,hasFirstName,datatype,KEEP,:hasFirstNameAsString,fuzzy
+P74,hasBroader,object,KEEP,:hasBroader,exact
+P75,circa,datatype,DROP,,needs decision
+P76,source website for the property,datatype,DROP,,needs decision
+P77,hasDescriptiveEthnonym,datatype,KEEP,:hasDescriptiveEthnonym,exact
+P78,hasDescriptiveOccupation,datatype,KEEP,:hasDescriptiveOccupation,exact
+P79,matches,object,KEEP,:matches,exact
+P80,Ethnonym related term,object,KEEP,:hasDescriptiveEthnonym,needs decision

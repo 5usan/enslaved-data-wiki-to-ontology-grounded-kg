@@ -1,0 +1,18 @@
+# Jena GenericRuleReasoner ruleset — subPropertyOf roll-up only.
+#
+# rdfs5: make the subPropertyOf hierarchy transitive, so a 3-level tree
+#        (:hasAgeRecord -> :hasPersonRecord -> :hasAgentRecord) closes fully.
+# rdfs7: for every asserted triple, also assert it under each super-property.
+#
+# Together: querying a super-property returns every sub-property's triples,
+# at any depth.
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+[rdfs5_subPropertyTransitive:
+    (?p rdfs:subPropertyOf ?q), (?q rdfs:subPropertyOf ?r)
+    -> (?p rdfs:subPropertyOf ?r)]
+
+[rdfs7_subPropertyEntail:
+    (?a ?p ?b), (?p rdfs:subPropertyOf ?q)
+    -> (?a ?q ?b)]

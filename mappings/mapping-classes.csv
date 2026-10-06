@@ -1,0 +1,123 @@
+class,label
+https://lod.enslaved.org/entity/Q1,existence
+https://lod.enslaved.org/entity/Q12,philosophical concept
+https://lod.enslaved.org/entity/Q23,class
+https://lod.enslaved.org/entity/Q34,ontology
+https://lod.enslaved.org/entity/Q45,conceptual model
+https://lod.enslaved.org/entity/Q56,model
+https://lod.enslaved.org/entity/Q67,Entity with Provenance
+https://lod.enslaved.org/entity/Q86,Controlled Vocabulary for Sex
+https://lod.enslaved.org/entity/Q108,Occupation
+https://lod.enslaved.org/entity/Q110,Agent
+https://lod.enslaved.org/entity/Q122,Document Type
+https://lod.enslaved.org/entity/Q135,Version 3.0 of CV
+https://lod.enslaved.org/entity/Q139,Controlled Vocabulary for Event Type
+https://lod.enslaved.org/entity/Q141,Version 2.0 of CV
+https://lod.enslaved.org/entity/Q146,Voyage
+https://lod.enslaved.org/entity/Q147,Birth
+https://lod.enslaved.org/entity/Q148,Death
+https://lod.enslaved.org/entity/Q149,Baptism or Naming Ceremony
+https://lod.enslaved.org/entity/Q150,Marriage
+https://lod.enslaved.org/entity/Q151,Enslavement
+https://lod.enslaved.org/entity/Q153,Sale or Transfer
+https://lod.enslaved.org/entity/Q154,Disappearance
+https://lod.enslaved.org/entity/Q155,Legal Proceeding
+https://lod.enslaved.org/entity/Q156,"Employment, Apprenticeship, or Indenture"
+https://lod.enslaved.org/entity/Q157,Narrative
+https://lod.enslaved.org/entity/Q158,Health or Sickness or Injury
+https://lod.enslaved.org/entity/Q159,Residence
+https://lod.enslaved.org/entity/Q161,Relocation
+https://lod.enslaved.org/entity/Q163,Family Separation
+https://lod.enslaved.org/entity/Q164,Military Service
+https://lod.enslaved.org/entity/Q172,Research Project
+https://lod.enslaved.org/entity/Q202,entity
+https://lod.enslaved.org/entity/Q204,Controlled Vocabulary for Person Status
+https://lod.enslaved.org/entity/Q205,Controlled Vocabulary for Place Type
+https://lod.enslaved.org/entity/Q219,Controlled Vocabulary for Age Category
+https://lod.enslaved.org/entity/Q225,Wikidata identifier
+https://lod.enslaved.org/entity/Q233,Region
+https://lod.enslaved.org/entity/Q234,Enslaved.org property
+https://lod.enslaved.org/entity/Q236,relation of type constraint
+https://lod.enslaved.org/entity/Q237,property constraint
+https://lod.enslaved.org/entity/Q238,Event
+https://lod.enslaved.org/entity/Q239,Enslaved hub property definition
+https://lod.enslaved.org/entity/Q240,definition
+https://lod.enslaved.org/entity/Q241,Enslaved.org item
+https://lod.enslaved.org/entity/Q242,unique identifier
+https://lod.enslaved.org/entity/Q243,identifier
+https://lod.enslaved.org/entity/Q244,namespace
+https://lod.enslaved.org/entity/Q245,statement
+https://lod.enslaved.org/entity/Q248,representation
+https://lod.enslaved.org/entity/Q249,property
+https://lod.enslaved.org/entity/Q250,Registration
+https://lod.enslaved.org/entity/Q251,quality
+https://lod.enslaved.org/entity/Q252,scientific modelling
+https://lod.enslaved.org/entity/Q259,authority control
+https://lod.enslaved.org/entity/Q260,controlled vocabulary
+https://lod.enslaved.org/entity/Q261,knowledge organization system
+https://lod.enslaved.org/entity/Q263,variable-order metaclass
+https://lod.enslaved.org/entity/Q265,Enslaved.org qualifier
+https://lod.enslaved.org/entity/Q266,intellectual work
+https://lod.enslaved.org/entity/Q267,information
+https://lod.enslaved.org/entity/Q268,work
+https://lod.enslaved.org/entity/Q269,system
+https://lod.enslaved.org/entity/Q270,structure
+https://lod.enslaved.org/entity/Q271,communication medium
+https://lod.enslaved.org/entity/Q272,conceptual system
+https://lod.enslaved.org/entity/Q273,database
+https://lod.enslaved.org/entity/Q274,gazetteer
+https://lod.enslaved.org/entity/Q275,artificial entity
+https://lod.enslaved.org/entity/Q276,product
+https://lod.enslaved.org/entity/Q277,culture
+https://lod.enslaved.org/entity/Q278,human behaviour
+https://lod.enslaved.org/entity/Q279,behavior
+https://lod.enslaved.org/entity/Q280,activity
+https://lod.enslaved.org/entity/Q281,Emancipation or Manumission
+https://lod.enslaved.org/entity/Q282,Event Type
+https://lod.enslaved.org/entity/Q283,catalog
+https://lod.enslaved.org/entity/Q288,Place Type
+https://lod.enslaved.org/entity/Q291,Sex
+https://lod.enslaved.org/entity/Q293,Agent Record
+https://lod.enslaved.org/entity/Q298,Ethnolinguistic Descriptor
+https://lod.enslaved.org/entity/Q300,metaclass
+https://lod.enslaved.org/entity/Q301,Place
+https://lod.enslaved.org/entity/Q316,Role in a Life Event
+https://lod.enslaved.org/entity/Q351,Controlled Vocabulary for Role
+https://lod.enslaved.org/entity/Q360,Controlled Vocabulary for Document Type
+https://lod.enslaved.org/entity/Q375,Person Status
+https://lod.enslaved.org/entity/Q399,Origin
+https://lod.enslaved.org/entity/Q407,concept
+https://lod.enslaved.org/entity/Q408,Controlled Vocabulary for Occupation
+https://lod.enslaved.org/entity/Q410,Person
+https://lod.enslaved.org/entity/Q411,Organization
+https://lod.enslaved.org/entity/Q412,Age Category
+https://lod.enslaved.org/entity/Q415,social organism behavior
+https://lod.enslaved.org/entity/Q416,proposition
+https://lod.enslaved.org/entity/Q417,sign
+https://lod.enslaved.org/entity/Q420,conflicts-with constraint
+https://lod.enslaved.org/entity/Q422,Controlled Vocabulary for Ethnonyms
+https://lod.enslaved.org/entity/Q424,Age Record
+https://lod.enslaved.org/entity/Q428,abstract object
+https://lod.enslaved.org/entity/Q433,License Information
+https://lod.enslaved.org/entity/Q436,Freedom Narratives Region
+https://lod.enslaved.org/entity/Q437,Slave Voyages Region
+https://lod.enslaved.org/entity/Q449,mandatory qualifier constraint
+https://lod.enslaved.org/entity/Q451,VIAF identifier
+https://lod.enslaved.org/entity/Q454,Version 1.0 of CV
+https://lod.enslaved.org/entity/Q457,Controlled Vocabulary for Inter Agent Relationship
+https://lod.enslaved.org/entity/Q463,Interagent Relationship
+https://lod.enslaved.org/entity/Q473,Membership
+https://lod.enslaved.org/entity/Q478,object
+https://lod.enslaved.org/entity/Q489,temporal entity
+https://lod.enslaved.org/entity/Q10087,Embarkation
+https://lod.enslaved.org/entity/Q10088,Disembarkation
+https://lod.enslaved.org/entity/Q280159,Place
+https://lod.enslaved.org/entity/Q298746,Mortgage
+https://lod.enslaved.org/entity/Q303403,Place Name
+https://lod.enslaved.org/entity/Q624606,Match Class Module
+https://lod.enslaved.org/entity/Q624607,Match
+https://lod.enslaved.org/entity/Q624608,Close Match
+https://lod.enslaved.org/entity/Q624609,No Match
+https://lod.enslaved.org/entity/Q647904,Appraisal
+https://lod.enslaved.org/entity/Q856060,Mention
+https://lod.enslaved.org/entity/Q907443,Advertisement

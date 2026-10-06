@@ -1,0 +1,116 @@
+ontology_term,term_type,has_wiki_source,disposition,note
+:AgeCategory,class,yes,map,direct wiki source
+:AgeRecord,class,yes,map,direct wiki source
+:Agent,class,yes,infer,"NOT asserted by agent.py - inferred via :Person/:Organization rdfs:subClassOf :Agent. E6c: 2 participant-role agents (epq:P17) are untyped in the source (neither Q410 nor Q411) -> stay non-:Agent, accepted data gap (709,178/709,180 role agents covered)"
+:AgentRecord,class,yes,map,direct wiki source
+:Coordinates,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:Description,class,no,synthesize,"BUILT 2026-08-24 description.py: mints <entity>-desc-<md5(text)> from edt:P66, NODES ONLY (:Description + :asText). 293,319 nodes = distinct (entity,text) pairs over 271,418 subjects (Q238 Event + Q410 Person dominant, ~16 dataset-level carriers materialised not dropped - D2). md5-per-text is LOAD-BEARING: ~21,900 entities carry 2+ descriptions (top Q1149133 has 18) and each distinct text keeps :asText card-1. Forward :hasDescriptionText is minQualCard 0 (no max) so many-per-entity is legal - NO gap. :hasDescriptionText link re-homed to the owning module (Agent/Event/Place/ResearchProject); :EntityWithProvenance facet filled by the provenance module"
+:DocumentTypes,class,yes,map,direct wiki source
+:ECVO,class,yes,map,direct wiki source
+:EntityWithProvenance,class,yes,map,direct wiki source
+:Event,class,yes,map,direct wiki source
+:EventTypes,class,yes,map,direct wiki source
+:ExternalReference,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:ExternalReferent,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:InterAgentRelationshipRecord,class,yes,map,"BUILT 2026-09-13 inter_agent_relationship.py: DE-REIFY the P39 statement, SPLIT per pq:P40 to-agent -> mint <stmt>-<to>. Source is NOT the 8 direct kinship props P37/38/41/43/44/48/67/68 (diag q1 = 0 rows, dead); it is reified P39 (?from ep:P39 ?stmt ; ?stmt eps:P39 <Q457 type> ; ?stmt pq:P40 ?to). 248,896 de-reified stmts, of which 31,484 carry >1 pq:P40 (q9) -> split into per-dyad records. NODES-ONLY (q11=0). pq:P40 REQUIRED: separates true dyads from single-agent status/role assertions that reuse the shared Q457/Q204/Q316 CV"
+:InterAgentRelationshipTypes,class,yes,map,"direct wiki source (Q457 CV). :hasInterAgentRelationshipType points at eps:P39's value, already typed here by cv_individuals.py (VOCAB Q457) - q10b = 0 dangling; 18 individuals (Spouse/Child/Parent/Sibling/Godparent/Godchild/Enslaved Person/Enslaver or Owner/Employer/Employee/Grand-/Aunt/Cousin/In-Law/...)"
+:LicenseInformation,class,yes,map,direct wiki source
+:Match,class,yes,map,direct wiki source
+:MatchType,class,yes,map,direct wiki source
+:NameRecord,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:NameVariant,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:OccupationRecord,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:Occupations,class,yes,map,direct wiki source
+:Organization,class,yes,map,"BUILT 2026-08-18 agent.py: 1,354 typed :Organization from edt:P1 ed:Q411; all 1,354 rdfs:label @en"
+:OriginRecord,class,yes,map,direct wiki source
+:PSCategories,class,yes,map,direct wiki source
+:ParticipantRoleRecord,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:ParticipantRoleTypes,class,yes,map,direct wiki source
+:Person,class,yes,map,"BUILT 2026-08-18 agent.py: 732,352 typed :Person from edt:P1 ed:Q410 (memory prior ~1.14M WRONG); +rdfs:label @en (732,351/732,352). Fully residual (E2 ntypes=1)"
+:PersonRecord,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:PersonStatusRecord,class,no,synthesize,"BUILT + VERIFIED 2026-09-14 person_status_record.py: DE-REIFY the ep:P33 statement (statement node IS the record, nothing minted). V1=556,099 (E1 556,097 + 2 untyped-subject records the guardless construct includes). :hasValue=eps:P33 flat :PSCategories member (7 statuses; V2a/V2b/V3=0). :hasStatusGeneratedEvent=pq:P34 event (see that row for the V5c Q359 gap). recordedAt=pq:P18, hasTemporalExtent=<event>-extent, isDirectlyBasedOn=epr:P6 chain (V7c=0). SELF-CONTAINED; owning edge :hasPersonStatusRecord re-homed to Agent (D-AG-1)"
+:Place,class,yes,map,direct wiki source
+:PlaceCV,class,yes,map,direct wiki source
+:PlaceTypeCV,class,yes,map,direct wiki source
+:ProvenanceActivity,class,no,leave-empty,"no wiki class maps (verified E5/D-EWP-1); generatedBy(P16) value is Q172 :ResearchProject, not a ProvenanceActivity - allValuesFrom gap is an open ontology decision, not synthesized"
+:RaceRecord,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:ResearchProject,class,yes,map,direct wiki source
+:ResearchProjectContributorRole,class,no,leave-empty,no wiki source found - confirm min-cardinality 0
+:ResearchProjectPIRole,class,no,leave-empty,no wiki source found - confirm min-cardinality 0
+:Researcher,class,no,leave-empty,no wiki source found - confirm min-cardinality 0
+:SexRecord,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:SexTypes,class,yes,map,direct wiki source
+:SpatialExtent,class,no,synthesize,intermediate/record node - mint or re-type a statement (verify)
+:TemporalExtent,class,no,synthesize,"mint <subject>-extent (D7/D8), nodes-only (owning module emits :hasTemporalExtent). KNOWN GAP: some subjects carry 2-3 edt:P28 dates (temporal_diagnostics 3b, LIMIT-capped sample) -> all collapse onto ONE -extent node -> a point extent gets multi-valued :contains. Accepted 2026-08-24 to keep the D7 IRI deterministic/idempotent; expect SHACL flags in Phase 5"
+:TimeSpan,class,no,synthesize,"mint <subject>-extent for P28+P63 (D8), nodes-only. KNOWN GAP: a multi-dated subject (temporal_diagnostics 3b) collapses onto ONE -extent node -> multi-valued :startsAt. Accepted with the :TemporalExtent multi-date gap; expect SHACL flags in Phase 5"
+:agentRecordSelfProperty,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:asPlaceCV,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:asText,datatype-property,yes,map,"SOURCED from edt:P66 for :Description (description.py, 293,319 values = distinct (entity,text) pairs, all plain xsd:string - query 3 = 0 non-string, kept verbatim). NOTE :asText is also native to :RaceRecord (opla:isNativeTo) - no wiki source wired for that usage yet; it stays leave-empty until the RaceRecord module"
+:atPlace,object-property,yes,map,direct wiki source
+:attributedTo,object-property,no,leave-empty,"PARKED (D-EWP-4, 2026-08-17): P14 hasPI=0 direct+stmt (E11/E11b), prov:wasAttributedTo=0 (E13); only P13 hasContributor=81 name strings/45 subj (E12). Minting :Agent from bare names refused - future contributor-reconciliation enrichment to mint AND match to real Q410 persons"
+:availableFrom,datatype-property,yes,map,direct wiki source
+:contains,datatype-property,no,leave-empty,no wiki source found
+:endsAt,datatype-property,yes,map,direct wiki source
+:eventSelfProperty,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:fallsWithin,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:fullNameAsString,datatype-property,no,leave-empty,no wiki source found
+:generatedBy,object-property,yes,map,direct wiki source
+:hasAgeRecord,object-property,yes,map,"Owned by age_record.py (record module), NOT agent module. D-AG-1: direct edt:P42 points at 123 shared Q424 value-nodes (E4), not the 312,513 reified statement records (E4b); agent module renames nothing"
+:hasAgeValue,datatype-property,yes,map,direct wiki source
+:hasAgentRecord,object-property,no,map,"Each record module emits its own sub-property keyed on record IRIs; agent module emits none. D-AG-1: direct record-link claims point at shared value-nodes (E4), not per-fact records"
+:hasAlternateName,datatype-property,yes,map,direct wiki source
+:hasBroader,object-property,yes,map,direct wiki source
+:hasCoordinates,object-property,yes,map,direct wiki source
+:hasDescriptionText,object-property,yes,map,"NODE minting owned by description.py (mints :Description from P66, nodes-only). The LINK edge is native to the owning entities (Agent/Event/Place/ResearchProject) and is emitted by the OWNING module - re-deriving the same <entity>-desc-<md5> IRI - NOT by description.py (2026-08-24 self-contained refactor, mirrors temporal_extent/:hasTemporalExtent). Agents carry P66 (E5: 81,528 agents/100,979 claims); the Agent module emits the link for them"
+:hasDescriptiveEthnonym,datatype-property,yes,map,direct wiki source
+:hasDescriptiveOccupation,datatype-property,yes,map,direct wiki source
+:hasECVO,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasEventType,object-property,yes,map,direct wiki source
+:hasExternalReference,object-property,yes,map,Owned by external_reference.py (synthesis). E5: agents carry NO edt:P21 at all - 0 rows; empty on agents
+:hasFirstNameAsString,datatype-property,yes,map,direct wiki source
+:hasInterAgentRelationshipRecord,object-property,no,re-home,"owning edge (from-agent -> record, subPropertyOf :hasAgentRecord). RE-HOMED to the Agent/linking module (inter_agent_relationship.py is nodes-only, q11=0). D-IAR-4: unlike participant_role's :roleProvidedBy this is NOT the declared inverse of :isRelationshipFrom, so the Agent module MUST assert it explicitly, re-deriving the split IRI <stmt>-<to>"
+:hasInterAgentRelationshipType,object-property,yes,map,direct wiki source
+:hasLatitude,datatype-property,no,leave-empty,no wiki source found
+:hasLicenseInformation,object-property,yes,map,direct wiki source
+:hasLongitude,datatype-property,no,leave-empty,no wiki source found
+:hasMatchType,object-property,yes,map,direct wiki source
+:hasName,datatype-property,yes,map,direct wiki source
+:hasNameRecord,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasNameVariant,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasOccupationRecord,object-property,yes,map,direct wiki source
+:hasOriginRecord,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasOriginalSourceType,object-property,yes,map,direct wiki source
+:hasParticipantRoleRecord,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasParticipantRoleType,object-property,yes,map,direct wiki source
+:hasPersonRecord,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasPersonStatusRecord,object-property,yes,map,direct wiki source
+:hasPlaceTypeCV,object-property,yes,map,direct wiki source
+:hasPreferredNameVariant,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasRaceRecord,object-property,yes,map,direct wiki source
+:hasReferenceURI,datatype-property,no,leave-empty,"no wiki source: only candidate P12 hasLink has 0 instance data (E9, schema-only)"
+:hasSexRecord,object-property,yes,map,"Owned by SexRecord module, NOT agent module. D-AG-1: direct edt:P31 points at 2 shared Q291/Q86 value-nodes (E4) vs 491,670 reified statements (E4b)"
+:hasSpatialExtent,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasStatusGeneratedEvent,object-property,yes,map,"direct wiki source (pq:P34 qualifier on the P33 statement). PersonStatusRecord VERIFIED 2026-09-14 (V5b): 556,097 records carry an event, 786,189 links; multi-event allowed (allValuesFrom :Event, NO max). KNOWN GAP (V5c/V5d): 4 links point at items typed edt:P1 ed:Q359 ""Party"" (own labels ""Legal Proceedings involving ...""), NOT ed:Q238 Event -> not typed :Event. Only 4 items dump-wide carry Q359, 0 also Q238, Q359 is not a subclass of Event -> UPSTREAM source typing anomaly, ACCEPTED. Do NOT add Q359 to event.py (""Party"" is not an Event class; netting it would type non-events :Event). Expect SHACL flags in Phase 5"
+:hasSurnameAsString,datatype-property,yes,map,direct wiki source
+:hasTemporalExtent,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:hasValue,object-property,yes,map,direct wiki source
+:isAdministrativePartOf,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:isDirectlyBasedOn,object-property,yes,map,"direct wiki source; KNOWN GAP: :AgeRecords with >1 value (prov:wasDerivedFrom->epr:P6 multiplicity) vs maxQualifiedCardinality 1 - both emitted, source multiplicity kept honest, expect SHACL flags in Phase 5. Age rebuild verified 2026-09-14: all 312513 records sourced and 0 point at the edref: wrapper (V7b/V7c), reference-chain fix confirmed; the exact multi-source count is NOT yet re-measured on the 312513-record build (run before-phase E7b) - the prior 2026-07-20 build reported 5. INTER-AGENT-REL (2026-09-13, D-IAR-5): 114,020 :InterAgentRelationshipRecords carry >1 value (multi-source attestation via prov:wasDerivedFrom->epr:P6) - same policy: all emitted, not truncated, Phase 5 SHACL to reconsider the max-1 cardinality. PERSON-STATUS (2026-09-14, verified E7b/V7b): 232,419 of 556,099 :PersonStatusRecords (~42%) carry >1 epr:P6 source - same policy, all emitted, Phase 5 SHACL"
+:isRelationshipFrom,object-property,no,map,"no wiki property maps (confirmed) - it is the SUBJECT of the P39 statement (?from ep:P39 ?stmt). inter_agent_relationship.py emits it; the subject is Q410/Q411 (diag q5). card-1 holds (one subject per statement); q9 badFrom=0"
+:isRelationshipTo,object-property,yes,map,"direct wiki source = pq:P40 qualifier on the P39 statement. inter_agent_relationship.py emits it. qualifiedCardinality 1 (exactly-1): 31,484 statements carried >1 pq:P40 (q9) -> SPLIT per to-agent so each record has exactly one. Global pq:P40 (443k) >> P39 stmts because pq:P40 is reused on P33/P29 statements too - scoped to P39 it is <= 248,896"
+:isSpatiallyLocatedIn,object-property,yes,map,direct wiki source
+:matches,object-property,yes,map,direct wiki source
+:occursAfter,datatype-property,yes,map,direct wiki source
+:occursBefore,datatype-property,yes,map,direct wiki source
+:performedBy,object-property,no,leave-empty,"no source (D-EWP-4): its Agent would come from PI (P14), which is empty (E11). Parked with :attributedTo"
+:providesParticipantRole,object-property,yes,map,direct wiki source
+:recordedAt,object-property,yes,map,"direct wiki source (pq:P18); KNOWN GAP: 1034 of 312513 :AgeRecords carry >1 value (fact recorded at 2+ events; 1046 extra :recordedAt edges over 312509 recorded records, so ~12 carry 3+) vs maxQualifiedCardinality 1 - both emitted rather than arbitrarily picking one, expect SHACL flags in Phase 5. Verified 2026-09-14 (age_record after-phase V7a + before-phase E6b on enslaved-dataset); supersedes the stale 789/277194 from the 2026-07-20 build. INTER-AGENT-REL (2026-09-13, D-IAR-5): 15,640 :InterAgentRelationshipRecords carry >1 pq:P18 event - same policy, all emitted, Phase 5 SHACL. PERSON-STATUS (2026-09-14, verified E6b): 15,865 :PersonStatusRecords carry >1 pq:P18 recordedAt - same policy, all emitted, Phase 5 SHACL"
+:refersTo,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:refersToEvent,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:refersToPlaceOfOrigin,object-property,yes,map,direct wiki source
+:reportsOn,object-property,yes,map,direct wiki source
+:roleProvidedBy,object-property,yes,map,direct wiki source
+:startsAt,datatype-property,no,leave-empty,no wiki source found
+:subeventOf,object-property,no,synthesize,may be needed to attach a synthesized node (verify)
+:used,object-property,no,leave-empty,no wiki property maps (D-EWP); empty-by-design like TemporalExtent occursBefore/After
+:withID,datatype-property,no,leave-empty,no wiki source found

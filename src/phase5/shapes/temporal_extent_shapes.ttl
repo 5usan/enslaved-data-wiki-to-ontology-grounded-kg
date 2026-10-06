@@ -1,0 +1,65 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix shte: <https://enslaved.org/ontology/temporal-extent#> .
+
+shte:TemporalExtentShape
+    a sh:NodeShape ;
+    sh:targetClass :TemporalExtent , :TimeSpan ;
+    sh:closed true ;
+    sh:ignoredProperties (rdf:type) ;
+    sh:property    shte:contains ,
+                   shte:startsAt ,
+                   shte:endsAt ,
+                   shte:occursAfter ,
+                   shte:occursBefore ,
+                   shte:fallsWithin ,
+                   shte:owningAgentOrEvent ;
+    sh:message "TemporalExtent must be an IRI (minted <subject>-extent, never a blank node) and use only TemporalExtent properties." .
+
+shte:contains
+    a sh:PropertyShape ;
+    sh:path :contains ;
+    sh:datatype xsd:dateTime ;
+    sh:message "TemporalExtent :contains values must be xsd:dateTime" .
+
+shte:startsAt
+    a           sh:PropertyShape ;
+    sh:path     :startsAt ;
+    sh:datatype xsd:dateTime ;
+    sh:message  "TemporalExtent :startsAt values must be xsd:dateTime." .
+
+shte:endsAt
+    a           sh:PropertyShape ;
+    sh:path     :endsAt ;
+    sh:datatype xsd:dateTime ;
+    sh:message  "TemporalExtent :endsAt values must be xsd:dateTime." .
+
+shte:occursAfter
+    a           sh:PropertyShape ;
+    sh:path     :occursAfter ;
+    sh:datatype xsd:dateTime ;
+    sh:message  "TemporalExtent :occursAfter values must be xsd:dateTime." .
+
+shte:occursBefore
+    a           sh:PropertyShape ;
+    sh:path     :occursBefore ;
+    sh:datatype xsd:dateTime ;
+    sh:message  "TemporalExtent :occursBefore values must be xsd:dateTime." .
+
+shte:fallsWithin
+    a           sh:PropertyShape ;
+    sh:path     :fallsWithin ;
+    sh:class    :TimeSpan ;
+    sh:message  "TemporalExtent can only fall within a :TimeSpan." .
+
+shte:owningAgentOrEvent
+    a sh:PropertyShape ;
+    sh:path [sh:inversePath [sh:alternativePath (:hasTemporalExtent)]] ;
+    sh:or (
+        [ sh:class :Event ]
+    ) ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "TemporalExtent :owningAgentOrEvent must be either an :Agent or an :Event." .

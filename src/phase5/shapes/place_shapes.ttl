@@ -1,0 +1,122 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix shp: <http://enslaved.org/shapes/place#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:   <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+shp:PlaceShape
+    a sh:NodeShape ;
+    sh:targetClass :Place ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type rdfs:label schema:description skos:altLabel ) ;
+    sh:property shp:hasBroader ,
+                shp:hasDescriptionText ,
+                shp:isAdministrativePartOf ,
+                shp:isSpatiallyLocatedIn ,
+                shp:hasPlaceTypeCV ,
+                shp:hasSpatialExtent ,
+                shp:hasCoordinates ,
+                shp:hasTemporalExtent ,
+                shp:hasAlternateName ,
+                shp:hasName ,
+                shp:owningEvent .
+
+shp:hasBroader
+    a sh:PropertyShape ;
+    sh:path :hasBroader ;
+    sh:class :PlaceCV ; # looking at generated ttl, all :hasBroader values are Place not PlaceCV
+    sh:message "Place :hasBroader values must be PlaceCV" .
+
+shp:hasDescriptionText
+    a sh:PropertyShape ;
+    sh:path :hasDescriptionText ;
+    sh:class :Description ;
+    sh:message "Place :hasDescriptionText values must be Description" .
+
+shp:isAdministrativePartOf
+    a sh:PropertyShape ;
+    sh:path :isAdministrativePartOf ;
+    sh:class :PlaceCV ;
+    sh:message "Place :isAdministrativePartOf values must be PlaceCV" .
+
+shp:isSpatiallyLocatedIn
+    a sh:PropertyShape ;
+    sh:path :isSpatiallyLocatedIn ;
+    sh:or ([sh:class :PlaceCV ] [sh:class :Place ]) ;
+    sh:message "Place :isSpatiallyLocatedIn values must be PlaceCV or Place" .
+
+shp:hasPlaceTypeCV  # one ttl have more than one :hasPlaceTypeCV values
+    a sh:PropertyShape ;
+    sh:path :hasPlaceTypeCV ;
+    sh:class :PlaceTypeCV ;
+    sh:maxCount 1 ;
+    sh:message "Place must have at most one :hasPlaceTypeCV values and the value must be PlaceTypeCV" .
+
+shp:hasSpatialExtent
+    a sh:PropertyShape ;
+    sh:path :hasSpatialExtent ;
+    sh:or ([sh:class :SpecialExtent ] [sh:class :Coordinates]) ;
+    sh:maxCount 1 ;
+    sh:message "Place must have at most one :hasSpatialExtent values and the value must be SpatialExtent or Coordinates" .
+
+shp:hasCoordinates
+    a sh:PropertyShape ;
+    sh:path :hasCoordinates ;
+    sh:class :Coordinates ;
+    sh:maxCount 1 ;
+    sh:message "Place must have at most one :hasCoordinates values and the value must be Coordinates" .
+
+shp:hasTemporalExtent
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:class :TemporalExtent ;
+    sh:maxCount 1 ;
+    sh:message "Place must have at most one :hasTemporalExtent values and the value must be TemporalExtent" .
+
+shp:hasAlternateName
+    a sh:PropertyShape ;
+    sh:path :hasAlternateName ;
+    sh:datatype xsd:string ;
+    sh:message "Place :hasAlternateName values must be xsd:string" .
+
+shp:hasName # 10 ttl have multiple :hasName values
+    a sh:PropertyShape ;
+    sh:path :hasName ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Place must have exactly one :hasName value and the value must be xsd:string" .
+
+shp:CoordinateShape
+    a sh:NodeShape ;
+    sh:targetClass :Coordinates ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shp:hasLatitude ,
+                shp:hasLongitude .
+
+shp:hasLatitude
+    a sh:PropertyShape ;
+    sh:path :hasLatitude ;
+    sh:datatype xsd:double ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Coordinate must have exactly one :hasLatitude value and the value must be xsd:double" .
+
+shp:hasLongitude
+    a sh:PropertyShape ;
+    sh:path :hasLongitude ;
+    sh:datatype xsd:double ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Coordinate must have exactly one :hasLongitude value and the value must be xsd:double" .
+
+shp:owningEvent
+    a sh:PropertyShape ;
+    sh:path [sh:inversePath :atPlace] ;
+    sh:class :Event ;
+    sh:minCount 1 ;
+    sh:message "Place must have at least one :owningEvent values and the value must be Event" .

@@ -1,0 +1,81 @@
+prop,label,propType,kind
+https://lod.enslaved.org/entity/P1,instance of,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P2,subclass of,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P3,hasAgeValue,http://wikiba.se/ontology#Quantity,datatype
+https://lod.enslaved.org/entity/P4,hasAgeCategory,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P5,equivalent class,http://wikiba.se/ontology#Url,datatype
+https://lod.enslaved.org/entity/P6,isDirectlyBasedOn,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P7,locatedIn,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P8,hasPlaceType,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P9,modern country code,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P10,has cause,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P11,version,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P12,hasLink,http://wikiba.se/ontology#Url,datatype
+https://lod.enslaved.org/entity/P13,hasContributor,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P14,hasPI,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P15,hasLicenseInfo,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P16,generatedBy,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P17,hasParticipantRole,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P18,recordedAt,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P19,roleProvidedBy,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P20,hasName,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P21,hasExternalReference,http://wikiba.se/ontology#Url,datatype
+https://lod.enslaved.org/entity/P22,hasOccupation,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P23,hasOriginalSourceType,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P24,hasDescriptiveRole,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P25,reportsOn,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P26,availableFrom,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P27,atPlace,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P28,date,http://wikiba.se/ontology#Time,datatype
+https://lod.enslaved.org/entity/P29,providesParticipantRole,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P30,hasEventType,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P31,hasSex,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P32,hasRaceorColor,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P33,hasPersonStatus,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P34,hasStatusGeneratingEvent,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P35,hasMatchType,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P36,Geonames ID,http://wikiba.se/ontology#ExternalId,datatype
+https://lod.enslaved.org/entity/P37,hasSpouse,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P38,hasChild,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P39,hasInterAgentRelationshipTypeTo,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P40,isRelationshipTo,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P41,hasEnslavedPerson,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P42,hasAge,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P43,hasParent,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P44,hasSibling,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P45,has quality,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P46,hasEthnolinguisticDescriptor,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P47,referstoPlaceofOrigin,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P48,hasOwner,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P49,formatter URL,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P50,formatter URI for RDF resource,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P51,format as a regular expression,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P52,occursAfter,http://wikiba.se/ontology#Time,datatype
+https://lod.enslaved.org/entity/P53,Enslaved.org property,http://wikiba.se/ontology#WikibaseProperty,datatype
+https://lod.enslaved.org/entity/P54,property constraint,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P55,part of,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P56,subject item of this property,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P57,has part,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P58,has effect,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P59,hasCoordinates,http://wikiba.se/ontology#GlobeCoordinate,datatype
+https://lod.enslaved.org/entity/P60,official website,http://wikiba.se/ontology#Url,datatype
+https://lod.enslaved.org/entity/P61,of,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P62,facet of,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P63,endsAt,http://wikiba.se/ontology#Time,datatype
+https://lod.enslaved.org/entity/P64,VIAF ID,http://wikiba.se/ontology#ExternalId,datatype
+https://lod.enslaved.org/entity/P65,wikidataID,http://wikiba.se/ontology#ExternalId,datatype
+https://lod.enslaved.org/entity/P66,hasDescription,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P67,hasGodparent,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P68,hasGodChild,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P69,occursBefore,http://wikiba.se/ontology#Time,datatype
+https://lod.enslaved.org/entity/P70,ethnonym variant,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P71,hasAlternateName,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P72,hasSurname,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P73,hasFirstName,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P74,hasBroader,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P75,circa,http://wikiba.se/ontology#Time,datatype
+https://lod.enslaved.org/entity/P76,source website for the property,http://wikiba.se/ontology#Url,datatype
+https://lod.enslaved.org/entity/P77,hasDescriptiveEthnonym,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P78,hasDescriptiveOccupation,http://wikiba.se/ontology#String,datatype
+https://lod.enslaved.org/entity/P79,matches,http://wikiba.se/ontology#WikibaseItem,object
+https://lod.enslaved.org/entity/P80,Ethnonym related term,http://wikiba.se/ontology#WikibaseItem,object

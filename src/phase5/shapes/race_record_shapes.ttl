@@ -1,0 +1,92 @@
+# SHACL shapes for the :RaceRecord module (Phase 5).
+#
+# Each constraint is a direct translation of an OWL restriction in ontology/enslaved-v2.ttl:
+#   - :RaceRecord's own axiom:  :asText max 1, xsd:string
+#   - inherited from :AgentRecord: hasTemporalExtent =1, owner (inverse hasAgentRecord) =1,
+#     isDirectlyBasedOn / recordedAt / reportsOn max 1
+#
+# Validate with Jena:
+#   shacl validate --shapes src/phase5/shapes/race_record_shapes.ttl \
+#                  --data out/phase3/race_record.ttl \
+#                  --data out/phase3/temporal_extent.ttl ...
+# SHACL does no OWL/RDFS inference, so every sh:class check only passes when the module that types
+# the referenced node is co-loaded (see the note on each property shape).
+
+@prefix :     <https://enslaved.org/ontology/> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix shr:  <https://enslaved.org/shapes/race-record#> .
+
+# Closed so that any predicate the CONSTRUCT should not emit on a record (a leaked eps:/pq: triple,
+# a misspelled ontology property) is reported, not silently accepted.
+shr:RaceRecordShape
+    a              sh:NodeShape ;
+    sh:targetClass :RaceRecord ;
+    sh:closed      true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property    shr:asText ,
+                   shr:hasTemporalExtent ,
+                   shr:owningAgent ,
+                   shr:isDirectlyBasedOn ,
+                   shr:recordedAt ,
+                   shr:reportsOn .
+
+# The ontology only caps :asText at 1; it does not require it, so no sh:minCount.
+# Race terms are kept verbatim as plain strings, so a language-tagged literal here is a real error.
+shr:asText
+    a           sh:PropertyShape ;
+    sh:path     :asText ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message  "RaceRecord must have at most one :asText, typed xsd:string." .
+
+# AgentRecord requires exactly one extent. Records whose recordedAt event is undated have none;
+# expect ~3,525 minCount results here (accepted temporal gap). Needs temporal_extent.ttl for sh:class.
+shr:hasTemporalExtent
+    a           sh:PropertyShape ;
+    sh:path     :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class    :TemporalExtent ;
+    sh:message  "RaceRecord must have exactly one :hasTemporalExtent to a :TemporalExtent." .
+
+# The owning edge lives in agent.ttl as :hasRaceRecord, while the ontology states the restriction on
+# its super-property :hasAgentRecord. Without a reasoner SHACL won't roll the sub-property up, so the
+# path accepts any link in the chain; value nodes are de-duplicated, so an agent linked by several of
+# them still counts once. Owners are typed :Person/:Organization, not :Agent, hence the sh:or.
+# Vacuous (every record fails minCount) unless agent.ttl is co-loaded.
+shr:owningAgent
+    a           sh:PropertyShape ;
+    sh:path     [ sh:inversePath [ sh:alternativePath ( :hasRaceRecord :hasPersonRecord :hasAgentRecord ) ] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or       ( [ sh:class :Person ] [ sh:class :Organization ] [ sh:class :Agent ] ) ;
+    sh:message  "RaceRecord must be owned by exactly one Agent." .
+
+# Expect ~15,598 maxCount results: records citing 2+ sources (accepted, logged in coverage-gaps.csv).
+# Needs entity_with_provenance.ttl for sh:class.
+shr:isDirectlyBasedOn
+    a           sh:PropertyShape ;
+    sh:path     :isDirectlyBasedOn ;
+    sh:maxCount 1 ;
+    sh:class    :EntityWithProvenance ;
+    sh:message  "RaceRecord must be directly based on at most one :EntityWithProvenance." .
+
+# Expect ~1,189 maxCount results: records with 2+ recordedAt events (accepted, logged).
+# Needs event.ttl for sh:class.
+shr:recordedAt
+    a           sh:PropertyShape ;
+    sh:path     :recordedAt ;
+    sh:maxCount 1 ;
+    sh:class    :Event ;
+    sh:message  "RaceRecord must be recorded at most at one :Event." .
+
+# The wiki has no source for :reportsOn, so this never fires today; kept so the shape stays faithful
+# to the ontology if a later mapping adds it.
+shr:reportsOn
+    a           sh:PropertyShape ;
+    sh:path     :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class    :Event ;
+    sh:message  "RaceRecord must report on at most one :Event." .

@@ -1,0 +1,22 @@
+# Source data — 6.7 GB, obtained from the Enslaved.org Wikibase dump. Never commit.
+data/
+
+# Generated artefacts — reproducible by re-running src/phase3/*.py against Fuseki.
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jena / Fuseki local state
+run/
+*.tdb/
+*.log
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,73 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix shage: <https://enslaved.org/ontology/age-record#> .
+
+shage:AgeRecordShape
+    a sh:NodeShape ;
+    sh:targetClass :AgeRecord ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shage:hasValue ,
+                shage:hasAgeValue ,
+                shage:hasTemporalExtent ,
+                shage:owningAgent ,
+                shage:isDirectlyBasedOn ,
+                shage:recordedAt ,
+                shage:reportsOn .
+
+shage:hasValue
+    a sh:PropertyShape ;
+    sh:path :hasValue ;
+    sh:maxCount 1 ;
+    sh:class :AgeCategory ;
+    sh:message "AgeRecord must have at most one :hasValue, typed :AgeCategory." .
+
+shage:hasAgeValue
+    a sh:PropertyShape ;
+    sh:path :hasAgeValue ;
+    sh:maxCount 1 ;
+# change from xsd:decimal to xsd:double once double data is loaded in ttl file
+    sh:datatype xsd:decimal ;  
+    sh:message "AgeRecord must have at most one :hasAgeValue, typed xsd:decimal." .
+
+shage:hasTemporalExtent 
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :TemporalExtent ;
+    sh:message "AgeRecord must have exactly one :hasTemporalExtent, typed :TemporalExtent." .
+
+shage:isDirectlyBasedOn 
+    a sh:PropertyShape ;
+    sh:path :isDirectlyBasedOn ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :EntityWithProvenance ;
+    sh:message "AgeRecord must have exactly one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+
+shage:recordedAt
+    a sh:PropertyShape ;
+    sh:path :recordedAt ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:class :Event ;
+    sh:message "AgeRecord must have exactly one :recordedAt, typed :Event." .
+
+shage:reportsOn
+    a sh:PropertyShape ;
+    sh:path :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "AgeRecord must have at most one :reportsOn, typed :Event." .
+
+shage:owningAgent
+    a sh:PropertyShape ;
+    sh:path [ sh:inversePath [ sh:alternativePath (:hasAgeRecord :hasPersonRecord :hasAgentRecord)] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Agent ] ) ;
+    sh:message "AgeRecord must have exactly one Agent." .
+
