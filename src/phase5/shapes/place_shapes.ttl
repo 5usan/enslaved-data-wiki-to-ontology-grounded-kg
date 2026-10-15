@@ -22,7 +22,8 @@ shp:PlaceShape
                 shp:hasTemporalExtent ,
                 shp:hasAlternateName ,
                 shp:hasName ,
-                shp:owningEvent .
+                shp:owningEvent ,
+                shp:owningOrigin .
 
 shp:hasBroader
     a sh:PropertyShape ;
@@ -72,9 +73,9 @@ shp:hasCoordinates
 shp:hasTemporalExtent
     a sh:PropertyShape ;
     sh:path :hasTemporalExtent ;
-    sh:class :TemporalExtent ;
+    sh:or ([sh:class :TemporalExtent ] [sh:class :TimeSpan ]) ;
     sh:maxCount 1 ;
-    sh:message "Place must have at most one :hasTemporalExtent values and the value must be TemporalExtent" .
+    sh:message "Place must have at most one :hasTemporalExtent values and the value must be TemporalExtent or TimeSpan" .
 
 shp:hasAlternateName
     a sh:PropertyShape ;
@@ -114,9 +115,14 @@ shp:hasLongitude
     sh:maxCount 1 ;
     sh:message "Coordinate must have exactly one :hasLongitude value and the value must be xsd:double" .
 
-shp:owningEvent
+shp:owningEvent # no minCount: a Place need not host an Event (e.g. broader regions, origin-only places)
     a sh:PropertyShape ;
     sh:path [sh:inversePath :atPlace] ;
     sh:class :Event ;
-    sh:minCount 1 ;
-    sh:message "Place must have at least one :owningEvent values and the value must be Event" .
+    sh:message "Every subject that points to a Place via :atPlace must be an Event" .
+
+shp:owningOrigin # no minCount: a Place need not be anyone's place of origin
+    a sh:PropertyShape ;
+    sh:path [sh:inversePath :refersToPlaceOfOrigin] ;
+    sh:class :OriginRecord ;
+    sh:message "Every subject that points to a Place via :refersToPlaceOfOrigin must be an OriginRecord" .

@@ -43,6 +43,7 @@ CONSTRUCT {{
         :isSpatiallyLocatedIn  ?within ;
         :hasBroader            ?broader ;
         :hasAlternateName      ?altName ;
+        :hasAlternateName      ?demotedName ;
         rdfs:label             ?label ;
         skos:altLabel          ?altLabel ;
         schema:description     ?description ;
@@ -54,7 +55,24 @@ WHERE {{
     ?place edt:P1 ?placeClass .
     VALUES ?placeClass {{ {classes} }}
 
-    OPTIONAL {{ ?place edt:P20 ?name . }}
+    # :Place requires exactly one :hasName. The subquery runs before the outer join,
+    # so it repeats the class guard to avoid grouping every P20 subject in the dump.
+    OPTIONAL {{
+        SELECT ?place (MIN(?candidateName) AS ?name)
+        WHERE {{
+            {values}
+            ?place edt:P1 ?nameClass .
+            VALUES ?nameClass {{ {classes} }}
+            ?place edt:P20 ?candidateName .
+        }}
+        GROUP BY ?place
+    }}
+
+    # P20 values that weren't picked become alternate names. The comparison sits at
+    # outer scope, because a BIND inside the OPTIONAL can't see ?name.
+    OPTIONAL {{ ?place edt:P20 ?anyName . }}
+    BIND(IF(?anyName != ?name, ?anyName, ?unboundName) AS ?demotedName)
+
     OPTIONAL {{ ?place edt:P8  ?placeType . }}
     OPTIONAL {{ ?place edt:P7  ?within . }}
     OPTIONAL {{ ?place edt:P74 ?broader . }}
