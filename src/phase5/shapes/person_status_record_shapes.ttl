@@ -1,0 +1,72 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix shps: <http://enslaved.org/shapes/person-status-record#> .
+
+#   shacl validate --shapes src/phase5/shapes/person_status_record_shapes.ttl --data out/phase3/person_status_record.ttl --data out/phase3/cv_individuals.ttl --data out/phase3/temporal_extent.ttl --data out/phase3/event.ttl --data out/phase3/agent.ttl --data out/phase3/entity_with_provenance-old.ttl --data ontology/enslaved-v2.ttl | Out-File -Encoding utf8 out/phase5/person_status_record_report.ttl
+
+shps:PersonStatusRecordShape
+    a sh:NodeShape ;
+    sh:targetClass :PersonStatusRecord ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shps:hasValue ,
+                shps:hasStatusGeneratedEvent ,
+                shps:hasTemporalExtent ,
+                shps:owningAgent ,
+                shps:isDirectlyBasedOn ,
+                shps:recordedAt ,
+                shps:reportsOn .
+
+shps:hasValue
+    a sh:PropertyShape ;
+    sh:path :hasValue ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :PSCategories ;
+    sh:message "PersonStatusRecord must have exactly one :hasValue, typed :PSCategories." .
+
+shps:hasStatusGeneratedEvent
+    a sh:PropertyShape ;
+    sh:path :hasStatusGeneratedEvent ;
+    sh:class :Event ;
+    sh:message "PersonStatusRecord :hasStatusGeneratedEvent values must be typed :Event." .
+
+shps:hasTemporalExtent
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :TemporalExtent ] [ sh:class :TimeSpan ] ) ;
+    sh:severity sh:Warning ;
+    sh:message "PersonStatusRecord must have exactly one :hasTemporalExtent, typed :TemporalExtent or :TimeSpan." .
+
+shps:owningAgent
+    a sh:PropertyShape ;
+    sh:path [ sh:inversePath [ sh:alternativePath ( :hasPersonStatusRecord :hasPersonRecord :hasAgentRecord ) ] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Organization ] [ sh:class :Agent ] ) ;
+    sh:message "PersonStatusRecord must be owned by exactly one Agent." .
+
+shps:isDirectlyBasedOn
+    a sh:PropertyShape ;
+    sh:path :isDirectlyBasedOn ;
+    sh:maxCount 1 ;
+    sh:class :EntityWithProvenance ;
+    sh:message "PersonStatusRecord must have at most one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+
+shps:recordedAt
+    a sh:PropertyShape ;
+    sh:path :recordedAt ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "PersonStatusRecord must have at most one :recordedAt, typed :Event." .
+
+shps:reportsOn
+    a sh:PropertyShape ;
+    sh:path :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "PersonStatusRecord must have at most one :reportsOn, typed :Event." .

@@ -1,0 +1,105 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix shev: <http://enslaved.org/shapes/event#> .
+
+#   $env:JVM_ARGS = "-Xmx16G"
+#   shacl validate --shapes src/phase5/shapes/event_shapes.ttl --data out/phase3/event.ttl --data out/phase3/cv_individuals.ttl --data out/phase3/place.ttl --data out/phase3/description.ttl --data out/phase3/participant_role.ttl --data out/phase3/temporal_extent.ttl --data ontology/enslaved-v2.ttl | Out-File -Encoding utf8 out/phase5/event_report.ttl
+
+shev:EventShape
+    a sh:NodeShape ;
+    sh:targetClass :Event ;
+    sh:nodeKind sh:IRI ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type rdfs:label ) ;
+    sh:property shev:atPlace ,
+                shev:hasEventType ,
+                shev:hasDescriptionText ,
+                shev:hasExternalReference ,
+                shev:providesParticipantRole ,
+                shev:hasTemporalExtent ,
+                shev:eventSelfProperty ,
+                shev:hasName ,
+                shev:subeventOf ;
+    sh:sparql shev:eventSelfLoop .
+
+shev:atPlace
+    a sh:PropertyShape ;
+    sh:path :atPlace ;
+    sh:minCount 1 ;
+    sh:class :Place ;
+    sh:severity sh:Warning ;
+    sh:message "Event must have at least one :atPlace, typed :Place." .
+
+shev:hasEventType
+    a sh:PropertyShape ;
+    sh:path :hasEventType ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :EventTypes ;
+    sh:message "Event must have exactly one :hasEventType, typed :EventTypes." .
+
+shev:hasDescriptionText
+    a sh:PropertyShape ;
+    sh:path :hasDescriptionText ;
+    sh:class :Description ;
+    sh:message "Event :hasDescriptionText values must be typed :Description." .
+
+shev:hasExternalReference
+    a sh:PropertyShape ;
+    sh:path :hasExternalReference ;
+    sh:minCount 1 ;
+    sh:class :ExternalReference ;
+    sh:severity sh:Warning ;
+    sh:message "Event must have at least one :hasExternalReference, typed :ExternalReference." .
+
+shev:providesParticipantRole
+    a sh:PropertyShape ;
+    sh:path :providesParticipantRole ;
+    sh:minCount 1 ;
+    sh:class :ParticipantRoleRecord ;
+    sh:message "Event must provide at least one :ParticipantRoleRecord." .
+
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :TemporalExtent ] [ sh:class :TimeSpan ] ) ;
+    sh:severity sh:Warning ;
+    sh:message "Event must have exactly one :hasTemporalExtent, typed :TemporalExtent or :TimeSpan." .
+
+shev:eventSelfProperty
+    a sh:PropertyShape ;
+    sh:path :eventSelfProperty ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Event must have exactly one :eventSelfProperty." .
+
+shev:eventSelfLoop
+    a sh:SPARQLConstraint ;
+    sh:message "Event :eventSelfProperty must point to the event itself (owl:hasSelf)." ;
+    sh:prefixes shev:prefixes ;
+    sh:select """
+        SELECT $this ?value WHERE {
+            $this :eventSelfProperty ?value .
+            FILTER (?value != $this)
+        }
+    """ .
+
+shev:prefixes
+    sh:declare [ sh:prefix "" ; sh:namespace "https://enslaved.org/ontology/"^^xsd:anyURI ] .
+
+shev:hasName
+    a sh:PropertyShape ;
+    sh:path :hasName ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Event must have at least one :hasName, typed xsd:string." .
+
+shev:subeventOf
+    a sh:PropertyShape ;
+    sh:path :subeventOf ;
+    sh:class :Event ;
+    sh:message "Event :subeventOf values must be typed :Event." .

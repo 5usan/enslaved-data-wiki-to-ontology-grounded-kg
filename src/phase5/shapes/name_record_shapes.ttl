@@ -1,0 +1,113 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix shn: <http://enslaved.org/shapes/name-record#> .
+
+#   shacl validate --shapes src/phase5/shapes/name_record_shapes.ttl --data out/phase3/name_record.ttl --data out/phase3/temporal_extent.ttl --data out/phase3/event.ttl --data out/phase3/agent.ttl --data out/phase3/entity_with_provenance-old.ttl --data ontology/enslaved-v2.ttl > out/phase5/name_record_report.ttl
+
+shn:NameRecordShape
+    a sh:NodeShape ;
+    sh:targetClass :NameRecord ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shn:hasPreferredNameVariant ,
+                shn:hasNameVariant ,
+                shn:fullNameAsString ,
+                shn:hasFirstNameAsString ,
+                shn:hasSurnameAsString ,
+                shn:hasTemporalExtent ,
+                shn:owningAgent ,
+                shn:isDirectlyBasedOn ,
+                shn:recordedAt ,
+                shn:reportsOn .
+
+shn:hasNameVariant
+    a sh:PropertyShape ;
+    sh:path :hasNameVariant ;
+    # sh:minCount 1 ;
+    sh:class :NameVariant ;
+    sh:severity sh:Warning ;
+    sh:message "NameRecord must have at least one :hasNameVariant, typed :NameVariant." .
+
+shn:hasPreferredNameVariant
+    a sh:PropertyShape ;
+    sh:path :hasPreferredNameVariant ;
+    sh:maxCount 1 ;
+    sh:class :NameVariant ;
+    sh:message "NameRecord must have at most one :hasPreferredNameVariant, typed :NameVariant." .
+
+shn:fullNameAsString
+    a sh:PropertyShape ;
+    sh:path :fullNameAsString ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "NameRecord must have exactly one :fullNameAsString, typed xsd:string." .
+
+shn:hasFirstNameAsString
+    a sh:PropertyShape ;
+    sh:path :hasFirstNameAsString ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "NameRecord must have at most one :hasFirstNameAsString, typed xsd:string." .
+
+shn:hasSurnameAsString
+    a sh:PropertyShape ;
+    sh:path :hasSurnameAsString ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "NameRecord must have at most one :hasSurnameAsString, typed xsd:string." .
+
+shn:hasTemporalExtent
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :TemporalExtent ] [ sh:class :TimeSpan ] ) ;
+    sh:severity sh:Warning ;
+    sh:message "NameRecord must have exactly one :hasTemporalExtent, typed :TemporalExtent or :TimeSpan." .
+
+
+shn:owningAgent
+    a sh:PropertyShape ;
+    sh:path [ sh:inversePath [ sh:alternativePath ( :hasNameRecord :hasAgentRecord ) ] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Organization ] [ sh:class :Agent ] ) ;
+    sh:message "NameRecord must be owned by exactly one Agent." .
+
+shn:isDirectlyBasedOn
+    a sh:PropertyShape ;
+    sh:path :isDirectlyBasedOn ;
+    sh:maxCount 1 ;
+    sh:class :EntityWithProvenance ;
+    sh:message "NameRecord must have at most one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+
+shn:recordedAt
+    a sh:PropertyShape ;
+    sh:path :recordedAt ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "NameRecord must have at most one :recordedAt, typed :Event." .
+
+shn:reportsOn
+    a sh:PropertyShape ;
+    sh:path :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "NameRecord must have at most one :reportsOn, typed :Event." .
+
+shn:NameVariantShape
+    a sh:NodeShape ;
+    sh:targetClass :NameVariant ;
+    sh:nodeKind sh:IRI ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "NameVariant must have an rdfs:label, typed xsd:string."
+    ] .

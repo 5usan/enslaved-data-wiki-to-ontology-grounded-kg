@@ -2,7 +2,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix shs: <http://enslaved.org/shapes/sex-record#>
+@prefix shs: <http://enslaved.org/shapes/sex-record#> .
 
 shs:SexRecordShape
     a sh:NodeShape ;
@@ -27,6 +27,7 @@ shs:hasValue
 shs:hasTemporalExtent 
     a sh:PropertyShape ;
     sh:path :hasTemporalExtent ;
+    sh:severity sh:Warning ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:class :TemporalExtent ;
@@ -35,7 +36,6 @@ shs:hasTemporalExtent
 shs:isDirectlyBasedOn 
     a sh:PropertyShape ;
     sh:path :isDirectlyBasedOn ;
-    sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:class :EntityWithProvenance ;
     sh:message "SexRecord must have exactly one :isDirectlyBasedOn, typed :EntityWithProvenance." .
@@ -44,7 +44,6 @@ shs:recordedAt
     a sh:PropertyShape ;
     sh:path :recordedAt ;
     sh:maxCount 1 ;
-    sh:minCount 1 ;
     sh:class :Event ;
     sh:message "SexRecord must have exactly one :recordedAt, typed :Event." .
 

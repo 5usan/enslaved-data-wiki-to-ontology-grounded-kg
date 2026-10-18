@@ -1,0 +1,80 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sho: <http://enslaved.org/shapes/origin-record#> .
+
+sho:OriginRecordShape
+    a sh:NodeShape ;
+    sh:targetClass :OriginRecord ;
+    sh:closed true ;
+    sh:ignoredProperties (rdf:type) ;
+    sh:or (
+        [ sh:path :hasECVO    ; sh:minCount 1 ; sh:class :ECVO ]
+        [ sh:path :refersToPlaceOfOrigin ; sh:minCount 1 ; sh:class :Place ]
+    ) ;
+    sh:property sho:hasECVO ,
+                sho:refersToPlaceOfOrigin ,
+                sho:hasDescriptiveEthnonym ,
+                sho:hasTemporalExtent ,
+                sho:owningAgent ,
+                sho:isDirectlyBasedOn ,
+                sho:recordedAt ,
+                sho:reportsOn .
+sho:hasECVO
+    a sh:PropertyShape ;
+    sh:path :hasECVO ;
+    sh:class :ECVO ;
+    sh:maxCount 1 ;
+    sh:message "OriginRecord must have at most one :hasECVO, typed :ECVO." .
+
+sho:refersToPlaceOfOrigin
+    a sh:PropertyShape ;
+    sh:path :refersToPlaceOfOrigin ;
+    sh:class :Place ;
+    sh:message "OriginRecord :refersToPlaceOfOrigin values must be typed :Place." .
+
+sho:hasDescriptiveEthnonym
+    a sh:PropertyShape ;
+    sh:path :hasDescriptiveEthnonym ;
+    sh:datatype xsd:string ;
+    sh:message "OriginRecord :hasDescriptiveEthnonym values must be xsd:string." .
+
+sho:hasTemporalExtent 
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:severity sh:Warning ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class :TemporalExtent ;
+    sh:message "OriginRecord must have exactly one :hasTemporalExtent, typed :TemporalExtent." .
+
+sho:isDirectlyBasedOn 
+    a sh:PropertyShape ;
+    sh:path :isDirectlyBasedOn ;
+    sh:maxCount 1 ;
+    sh:class :EntityWithProvenance ;
+    sh:message "OriginRecord must have exactly one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+
+sho:recordedAt
+    a sh:PropertyShape ;
+    sh:path :recordedAt ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "OriginRecord must have exactly one :recordedAt, typed :Event." .
+
+sho:reportsOn
+    a sh:PropertyShape ;
+    sh:path :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "OriginRecord must have at most one :reportsOn, typed :Event." .
+
+sho:owningAgent
+    a sh:PropertyShape ;
+    sh:path [ sh:inversePath [ sh:alternativePath (:hasOriginRecord :hasPersonRecord :hasAgentRecord)] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Agent ] ) ;
+    sh:message "OriginRecord must have exactly one Agent." .
+    

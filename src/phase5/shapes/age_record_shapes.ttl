@@ -2,13 +2,17 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix shage: <https://enslaved.org/ontology/age-record#> .
+@prefix shage: <https://enslaved.org/shapes/age-record#> .
 
 shage:AgeRecordShape
     a sh:NodeShape ;
     sh:targetClass :AgeRecord ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
+    sh:or (
+        [ sh:path :hasValue    ; sh:minCount 1 ; sh:class :AgeCategory ]
+        [ sh:path :hasAgeValue ; sh:minCount 1 ; sh:datatype xsd:decimal ]
+    ) ;
     sh:property shage:hasValue ,
                 shage:hasAgeValue ,
                 shage:hasTemporalExtent ,
@@ -43,18 +47,16 @@ shage:hasTemporalExtent
 shage:isDirectlyBasedOn 
     a sh:PropertyShape ;
     sh:path :isDirectlyBasedOn ;
-    sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:class :EntityWithProvenance ;
-    sh:message "AgeRecord must have exactly one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+    sh:message "AgeRecord must have at most one :isDirectlyBasedOn, typed :EntityWithProvenance." .
 
 shage:recordedAt
     a sh:PropertyShape ;
     sh:path :recordedAt ;
     sh:maxCount 1 ;
-    sh:minCount 1 ;
     sh:class :Event ;
-    sh:message "AgeRecord must have exactly one :recordedAt, typed :Event." .
+    sh:message "AgeRecord must have at most one :recordedAt, typed :Event." .
 
 shage:reportsOn
     a sh:PropertyShape ;

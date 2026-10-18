@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase 3 - :Event (ed:Q238) -> out/phase3/event.ttl
+"""Phase 3 - :Event (ed:Q238, ed:Q359) -> out/phase3/event.ttl
 
 One CONSTRUCT whose WHERE is a UNION of five branches: the Event's own facts plus the links
 re-homed from the nodes-only satellites. Each link re-derives the satellite's IRI byte-for-byte.
@@ -42,8 +42,9 @@ CONSTRUCT {
 }
 WHERE {
     __VALUES__
+    VALUES ?eventClasses { ed:Q238 ed:Q359}
     {
-        ?e edt:P1 ed:Q238 .
+        ?e edt:P1 ?eventClasses .
         FILTER NOT EXISTS { ?e wikibase:rank wikibase:DeprecatedRank }
         OPTIONAL { ?e edt:P30 ?type }
         OPTIONAL { ?e edt:P20 ?name }
@@ -52,25 +53,26 @@ WHERE {
     UNION
     {
         # UNION, not the edt:P28|edt:P63 path - the path is another TDB2 reorder trap.
-        ?e edt:P1 ed:Q238 .
+        ?e edt:P1 ?eventClasses .
+        VALUES ?eventClasses { ed:Q238 ed:Q359}
         { ?e edt:P28 ?extentDate } UNION { ?e edt:P63 ?extentDate }
         BIND(IRI(CONCAT(STR(?e), "-extent")) AS ?temporalExtent)
     }
     UNION
     {
-        ?e edt:P1 ed:Q238 ;
+        ?e edt:P1 ?eventClasses ;
            edt:P66 ?text .
         BIND(IRI(CONCAT(STR(?e), "-desc-", MD5(STR(?text)))) AS ?desc)
     }
     UNION
     {
-        ?e edt:P1 ed:Q238 ;
+        ?e edt:P1 ?eventClasses ;
            edt:P21 ?url .
         BIND(IRI(CONCAT(STR(?e), "-extref-", MD5(STR(?url)))) AS ?externalReference)
     }
     UNION
     {
-        ?e        edt:P1  ed:Q238 ;
+        ?e        edt:P1  ?eventClasses ;
                   ep:P29  ?stmt .
         ?stmt     eps:P29 ?roleType ;
                   pq:P17  ?agent .

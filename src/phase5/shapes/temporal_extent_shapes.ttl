@@ -2,11 +2,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix shte: <https://enslaved.org/ontology/temporal-extent#> .
+@prefix shte: <https://enslaved.org/shapes/temporal-extent#> .
 
 shte:TemporalExtentShape
     a sh:NodeShape ;
-    sh:targetClass :TemporalExtent , :TimeSpan ;
+    sh:targetClass :TemporalExtent ;
     sh:closed true ;
     sh:ignoredProperties (rdf:type) ;
     sh:property    shte:contains ,
@@ -16,7 +16,7 @@ shte:TemporalExtentShape
                    shte:occursBefore ,
                    shte:fallsWithin ,
                    shte:owningAgentOrEvent ;
-    sh:message "TemporalExtent must be an IRI (minted <subject>-extent, never a blank node) and use only TemporalExtent properties." .
+    sh:message "TemporalExtent must be an IRI (minted <subject>-extent) and use only TemporalExtent properties." .
 
 shte:contains
     a sh:PropertyShape ;
@@ -63,3 +63,11 @@ shte:owningAgentOrEvent
     sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:message "TemporalExtent :owningAgentOrEvent must be either an :Agent or an :Event." .
+
+shte:TimeSpanShape
+    a sh:NodeShape ;
+    sh:targetClass :TimeSpan ;
+    sh:property [ sh:path :startsAt ; sh:minCount 1 ;
+                  sh:message "TimeSpan must have at least one :startsAt" ] ,
+                [ sh:path :endsAt ; sh:minCount 1 ;
+                  sh:message "TimeSpan must have at least one :endsAt" ] .

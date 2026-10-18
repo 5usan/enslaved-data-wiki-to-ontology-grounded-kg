@@ -1,0 +1,83 @@
+@prefix : <https://enslaved.org/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix shiar: <http://enslaved.org/shapes/inter-agent-relationship-record#> .
+
+#   $env:JVM_ARGS = "-Xmx20G"
+#   shacl validate --shapes src/phase5/shapes/inter_agent_relationship_record_shapes.ttl --data out/phase3/inter_agent_relationship.ttl --data out/phase3/cv_individuals.ttl --data out/phase3/temporal_extent.ttl --data out/phase3/event.ttl --data out/phase3/agent.ttl --data out/phase3/entity_with_provenance-old.ttl --data ontology/enslaved-v2.ttl | Out-File -Encoding utf8 out/phase5/inter_agent_relationship_record_report.ttl
+
+shiar:InterAgentRelationshipRecordShape
+    a sh:NodeShape ;
+    sh:targetClass :InterAgentRelationshipRecord ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property shiar:hasInterAgentRelationshipType ,
+                shiar:isRelationshipFrom ,
+                shiar:isRelationshipTo ,
+                shiar:owningAgent ,
+                shiar:hasTemporalExtent ,
+                shiar:isDirectlyBasedOn ,
+                shiar:recordedAt ,
+                shiar:reportsOn .
+
+shiar:hasInterAgentRelationshipType
+    a sh:PropertyShape ;
+    sh:path :hasInterAgentRelationshipType ;
+    sh:maxCount 1 ;
+    sh:class :InterAgentRelationshipTypes ;
+    sh:message "InterAgentRelationshipRecord must have at most one :hasInterAgentRelationshipType, typed :InterAgentRelationshipTypes." .
+
+shiar:isRelationshipFrom
+    a sh:PropertyShape ;
+    sh:path :isRelationshipFrom ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Organization ] [ sh:class :Agent ] ) ;
+    sh:message "InterAgentRelationshipRecord must have exactly one :isRelationshipFrom, typed :Agent." .
+
+shiar:isRelationshipTo
+    a sh:PropertyShape ;
+    sh:path :isRelationshipTo ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Organization ] [ sh:class :Agent ] ) ;
+    sh:message "InterAgentRelationshipRecord must have exactly one :isRelationshipTo, typed :Agent." .
+
+shiar:owningAgent
+    a sh:PropertyShape ;
+    sh:path [ sh:inversePath [ sh:alternativePath ( :hasInterAgentRelationshipRecord :hasAgentRecord ) ] ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :Person ] [ sh:class :Organization ] [ sh:class :Agent ] ) ;
+    sh:message "InterAgentRelationshipRecord must be owned by exactly one Agent." .
+
+shiar:hasTemporalExtent
+    a sh:PropertyShape ;
+    sh:path :hasTemporalExtent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:or ( [ sh:class :TemporalExtent ] [ sh:class :TimeSpan ] ) ;
+    sh:severity sh:Warning ;
+    sh:message "InterAgentRelationshipRecord must have exactly one :hasTemporalExtent, typed :TemporalExtent or :TimeSpan." .
+
+shiar:isDirectlyBasedOn
+    a sh:PropertyShape ;
+    sh:path :isDirectlyBasedOn ;
+    sh:maxCount 1 ;
+    sh:class :EntityWithProvenance ;
+    sh:message "InterAgentRelationshipRecord must have at most one :isDirectlyBasedOn, typed :EntityWithProvenance." .
+
+shiar:recordedAt
+    a sh:PropertyShape ;
+    sh:path :recordedAt ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "InterAgentRelationshipRecord must have at most one :recordedAt, typed :Event." .
+
+shiar:reportsOn
+    a sh:PropertyShape ;
+    sh:path :reportsOn ;
+    sh:maxCount 1 ;
+    sh:class :Event ;
+    sh:message "InterAgentRelationshipRecord must have at most one :reportsOn, typed :Event." .
